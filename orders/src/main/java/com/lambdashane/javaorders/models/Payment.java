@@ -1,7 +1,5 @@
 package com.lambdashane.javaorders.models;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,16 +21,6 @@ public class Payment
     public Payment(String type)
     {
         this.type = type;
-    }
-
-    public Set<Order> getOrders()
-    {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders)
-    {
-        this.orders = orders;
     }
 
     public Payment()
@@ -57,5 +45,15 @@ public class Payment
     public void setType(String type)
     {
         this.type = type;
+    }
+
+    public Set<Order> getOrders()
+    {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders)
+    {
+        this.orders = orders;
     }
 }

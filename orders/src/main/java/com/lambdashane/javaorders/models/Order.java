@@ -11,6 +11,7 @@ public class Order
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long ordnum;
+
     private double ordamount;
     private double advanceamount;
 
@@ -23,7 +24,8 @@ public class Order
 
     @ManyToMany()
     @JoinTable(name = "orderspayments",
-        joinColumns = @JoinColumn(name = "ordnum"))
+        joinColumns = @JoinColumn(name = "ordnum"),
+    inverseJoinColumns = @JoinColumn(name = "paymentid"))
     private Set<Payment> payments = new HashSet<>();
 
     public Order(
@@ -105,9 +107,4 @@ public class Order
     public void addPayments(Payment pay)
     {
     }
-
-    //    public void addPayments(Set<Payment> payments)
-//    {
-//        this.payments = payments;
-//    }
 }
