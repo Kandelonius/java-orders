@@ -2,7 +2,9 @@ package com.lambdashane.javaorders.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "agents")
@@ -18,7 +20,7 @@ public class Agent
     private String phone;
     private String country;
 
-    @OneToMany(mappedBy = "agents",
+    @OneToMany(mappedBy = "agent",
         cascade = CascadeType.ALL,
         orphanRemoval = true)
     private List<Customer> customers = new ArrayList<>();
@@ -99,5 +101,15 @@ public class Agent
     public void setCountry(String country)
     {
         this.country = country;
+    }
+
+    public List<Customer> getCustomers()
+    {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers)
+    {
+        this.customers = customers;
     }
 }

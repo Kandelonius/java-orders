@@ -1,8 +1,8 @@
 package com.lambdashane.javaorders.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "customers")
@@ -27,13 +27,12 @@ public class Customer
     @ManyToOne
     @JoinColumn(name = "agentcode",
         nullable = false)
-    @Column(nullable = false,
-        unique = true)
     private Agent agent;
+
     @OneToMany(mappedBy = "customer",
         cascade = CascadeType.ALL,
         orphanRemoval = true)
-    private List<Order> order = new ArrayList<>();
+    private Set<Order> order = new HashSet<>();
 
     public Customer(
         String custname,
@@ -183,5 +182,15 @@ public class Customer
     public void setAgent(Agent agent)
     {
         this.agent = agent;
+    }
+
+    public Set<Order> getOrder()
+    {
+        return order;
+    }
+
+    public void setOrder(Set<Order> order)
+    {
+        this.order = order;
     }
 }

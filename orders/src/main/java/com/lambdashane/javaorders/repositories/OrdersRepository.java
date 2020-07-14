@@ -1,5 +1,8 @@
 package com.lambdashane.javaorders.repositories;
 
-public class OrdersRepository
+import com.lambdashane.javaorders.models.Order;
+import org.springframework.data.repository.CrudRepository;
+
+public interface OrdersRepository extends CrudRepository<Order, Long>
 {
 }

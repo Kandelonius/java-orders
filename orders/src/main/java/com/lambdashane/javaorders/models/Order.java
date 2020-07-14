@@ -1,6 +1,8 @@
 package com.lambdashane.javaorders.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -18,6 +20,11 @@ public class Order
     private Customer customer;
 
     private String orderdescription;
+
+    @ManyToMany()
+    @JoinTable(name = "orderspayments",
+        joinColumns = @JoinColumn(name = "ordnum"))
+    private Set<Payment> payments = new HashSet<>();
 
     public Order(
         double ordamount,
@@ -84,4 +91,23 @@ public class Order
     {
         this.orderdescription = orderdescription;
     }
+
+    public Set<Payment> getPayments()
+    {
+        return payments;
+    }
+
+    public void setPayments(Set<Payment> payments)
+    {
+        this.payments = payments;
+    }
+
+    public void addPayments(Payment pay)
+    {
+    }
+
+    //    public void addPayments(Set<Payment> payments)
+//    {
+//        this.payments = payments;
+//    }
 }
